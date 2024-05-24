@@ -1,6 +1,14 @@
 import { WebSocketServer } from 'ws';
 
+const cors = require("cors");
+
 const PORT = 3060;
+
+const corsConfig = {
+    origin : "*",
+    credentials : true,
+    methods : ["GET","HEAD","PUT","PATCH","POST","OPTIONS","DELETE"]
+}
 
 export function initializeWebSocketServer() {
     const wss = new WebSocketServer({port : PORT});

@@ -12,10 +12,10 @@ const corsConfig = {
     methods : ["GET","HEAD","PUT","PATCH","POST","OPTIONS","DELETE"]
 }
 
-server.use(cors(corsConfig));
+server.use(cors(corsConfig)); 
 
 server.get("/", (req:any, res:any) => {
-    res.send("RPS server running stable.")
+    res.send("RPS & Websocket server running stable.")
 })
 
 server.use(express.static("public"));
