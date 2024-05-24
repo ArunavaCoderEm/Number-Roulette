@@ -1,4 +1,4 @@
-import { initializeWebSocketServer } from "./Websockets";
+import { initializeWebSocketServer } from "./src/Websockets";
 
 const express = require("express");
 const cors = require("cors");
