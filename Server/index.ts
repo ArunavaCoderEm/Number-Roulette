@@ -1,28 +1,17 @@
-import { initializeWebSocketServer } from "./src/Websockets";
+import { WebSocketServer } from 'ws';
+import { Gamemanager } from './src/Gamemanage';
 
-const express = require("express");
-const cors = require("cors");
-const server = express();
+const PORT = 3060;
 
-const PORT = 3030; 
+const wss = new WebSocketServer({port : PORT});
 
-const corsConfig = {
-    origin : "*",
-    credentials : true,
-    methods : ["GET","HEAD","PUT","PATCH","POST","OPTIONS","DELETE"]
-}
+const gamemanager = new Gamemanager();
 
-server.use(cors(corsConfig)); 
+wss.on('connection', async (ws: any, req: any) => {
+    console.log("someone connected");
+    gamemanager.addPl(ws)
+    ws.send("Someone Connected");
+    ws.on('disconnect', () => gamemanager.removePl(ws));
+});
 
-server.get("/", (req:any, res:any) => {
-    res.send("RPS & Websocket server running stable.")
-})
-
-server.use(express.static("public"));
-server.use(express.urlencoded({ extended: true }));
-
-initializeWebSocketServer();
-
-server.listen(PORT, () => {
-    console.log("Server started properly on port ",PORT);
-})
+console.log('WebSocket server is running on port ',PORT);
