@@ -28,7 +28,7 @@ export class Game {
 
         if (this.player1Num !== null && this.player2Num !== null) {
             this.updateScores(this.player1Num, this.player2Num);
-            const winner = this.checkForWinner();
+            const winner : any = this.checkForWinner();
             this.sendUpdate(winner);
             this.resetGame();
         } else {
@@ -44,11 +44,11 @@ export class Game {
         }
     }
 
-    private checkForWinner(): string | null {
+    private checkForWinner(): WebSocket | null {
         if (this.player1Score >= this.winningScore) {
-            return "player1";
+            return this.player1;
         } else if (this.player2Score >= this.winningScore) {
-            return "player2";
+            return this.player2;
         }
         return null;
     }
