@@ -1,18 +1,43 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function Gamelobby():React.ReactNode {
-    const [load,setload] = useState<boolean>(false)
+    const[load,setload] = useState<boolean>(false);
     const location = useLocation();
-    const socket = location.state?.socket as WebSocket;
     const navigate = useNavigate();
+    const socketURL: string | undefined = location.state?.socketURL;
+    let ws: WebSocket | null = null;
+
+    useEffect(() => {
+        if (socketURL && !ws) {
+            ws = new WebSocket(socketURL);
+
+            ws.onopen = () => {
+                console.log('Connected to WebSocket server in GameLobby');
+            };
+
+            ws.onclose = () => {
+                console.log('WebSocket connection closed in GameLobby');
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error in GameLobby:', error);
+            };
+        }
+
+        return () => {
+           
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.close();
+            }
+        };
+    }, [socketURL]);
+
     const handleHit = () => {
-        if (socket && socket.readyState === WebSocket.OPEN) {
-            socket.send(JSON.stringify({ type: 'hit' }));
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ type: 'hit' }));
             console.log('Hit message sent');
-            navigate('/gameroom')
-            setload(true);
         } else {
             console.log('WebSocket is not open');
         }
