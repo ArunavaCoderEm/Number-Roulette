@@ -22,6 +22,7 @@ export default function Home():React.ReactNode {
 
       ws.onerror = (error) => {
           console.error('WebSocket error:', error);
+          console.log(socketURL)
       };
   };
 

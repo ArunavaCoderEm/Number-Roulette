@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -9,12 +9,20 @@ export default function Gamelobby():React.ReactNode {
     const socketURL: string | undefined = location.state?.socketURL;
     let ws: WebSocket | null = null;
 
-    useEffect(() => {
+    const handleHit = () => {
         if (socketURL && !ws) {
             ws = new WebSocket(socketURL);
 
             ws.onopen = () => {
                 console.log('Connected to WebSocket server in GameLobby');
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ type: 'hit' }));
+                    console.log('Hit message sent');
+                    navigate('/gameroom');
+                } else {
+                    console.log('WebSocket is not open');
+                    setload(true)
+                }
             };
 
             ws.onclose = () => {
@@ -24,22 +32,6 @@ export default function Gamelobby():React.ReactNode {
             ws.onerror = (error) => {
                 console.error('WebSocket error in GameLobby:', error);
             };
-        }
-
-        return () => {
-           
-            if (ws && ws.readyState === WebSocket.OPEN) {
-                ws.close();
-            }
-        };
-    }, [socketURL]);
-
-    const handleHit = () => {
-        if (ws && ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify({ type: 'hit' }));
-            console.log('Hit message sent');
-        } else {
-            console.log('WebSocket is not open');
         }
     };
 
