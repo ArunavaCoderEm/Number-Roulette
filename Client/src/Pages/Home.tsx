@@ -1,25 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import TextTicker from "../Components/TextTicker"
+import React, { useState } from 'react';
 
 export default function Home():React.ReactNode {
-
-    const navigate = useNavigate();
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const navigate = useNavigate();
 
   const handleConnect = (): any => {
-    const socket = new WebSocket('ws://localhost:3060');
-    socket.addEventListener('open', () => {
-        console.log('WebSocket connection established');
-    });
+      const ws = new WebSocket('ws://localhost:3060');
 
-    socket.addEventListener('message', (event) => {
-        console.log('Message from server:', event.data);
-    });
+      ws.addEventListener('open', () => {
+          console.log('Connected to WebSocket server');
+          setSocket(ws);
+        });
+        
+        ws.addEventListener('message', (event) => {
+          setSocket(ws);
+          console.log('Message from server:', event.data);
+          if(socket) navigate('/gamelobby', { state: { socket: ws } });
+      });
 
-    socket.addEventListener('close', () => {
-        console.log('WebSocket connection closed');
-    });
-    navigate("/gameroom")
-};
+      ws.addEventListener('close', () => {
+          console.log('WebSocket connection closed');
+      });
+
+      ws.addEventListener('error', (error) => {
+          console.error('WebSocket error:', error);
+      });
+  };
 
   return (
     <>
