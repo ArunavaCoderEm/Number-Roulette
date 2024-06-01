@@ -9,7 +9,7 @@ export default function Gameroom():React.ReactNode {
             text-3xl'>Player 1</h1>
             <Wheel/>
         </div>
-        <div className='lg:border-r-2 h-screen flex flex-col items-center'>
+        <div className=' h-screen flex flex-col items-center'>
             <h1 className='text-white text-center font-thin
             text-3xl'>Player 2</h1>
             <Wheel/>
