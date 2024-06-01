@@ -15,7 +15,6 @@ export class Game {
     }
 
     chooseNum(socket: WebSocket, move: number) {
-
         if (socket !== this.player1 && socket !== this.player2) {
             return;
         }
@@ -27,28 +26,30 @@ export class Game {
         }
 
         if (this.player1Num !== null && this.player2Num !== null) {
-            this.updateScores(this.player1Num, this.player2Num);
+            this.updateScores();
             const winner : any = this.checkForWinner();
             this.sendUpdate(winner);
-            this.resetGame();
-        } else {
-            this.sendUpdate();
+            if (!winner) {
+                this.resetNumbers(); 
+            }
         }
     }
 
-    private updateScores(pl1num : Number, pl2num: Number) {
-        if (pl1num > pl2num) {
-            this.player1Score += 10;
-        } else {
-            this.player2Score += 10;
+    private updateScores() {
+        if (this.player1Num !== null && this.player2Num !== null) {
+            if (this.player1Num > this.player2Num) {
+                this.player1Score += 10;
+            } else if (this.player1Num < this.player2Num) {
+                this.player2Score += 10;
+            }
         }
     }
 
-    private checkForWinner(): WebSocket | null {
+    private checkForWinner(): String | null {
         if (this.player1Score >= this.winningScore) {
-            return this.player1;
+            return "player1";
         } else if (this.player2Score >= this.winningScore) {
-            return this.player2;
+            return "player2";
         }
         return null;
     }
@@ -71,7 +72,7 @@ export class Game {
         }
     }
 
-    private resetGame() {
+    private resetNumbers() {
         this.player1Num = null;
         this.player2Num = null;
     }
