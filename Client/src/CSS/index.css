@@ -11,3 +11,30 @@
         max-height: 500px;
     }
   }
+
+.img2{
+  filter: drop-shadow(0 0 20px #4444dd);
+}
+
+  .wheel {
+    width: 200px; 
+    height: 200px; 
+    position: relative;
+    cursor: pointer;
+    transition: transform 3s ease;
+  }
+  
+  .spin {
+    animation: spin 3s ease;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
