@@ -1,40 +1,35 @@
-import { useState } from "react"
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react"
+import { useNavigate } from 'react-router-dom';
+import { useWebSocket } from "../../WebSocketProvider"
 
+const Gamelobby: React.FC = () => {
 
-export default function Gamelobby():React.ReactNode {
-    const[load,setload] = useState<boolean>(false);
-    const location = useLocation();
+    const [load, setLoad] = useState<boolean>(false);
     const navigate = useNavigate();
-    const socketURL: string | undefined = location.state?.socketURL;
-    let ws: WebSocket | null = null;
 
+    const socket = useWebSocket();
+  
+    useEffect(() => {
+      if (!socket) return;
+  
+      socket.onmessage = (e: any) => {
+        const message = JSON.parse(e.data)
+        console.log(message)
+      }
+    }, [socket]);
+  
     const handleHit = () => {
-        if (socketURL && !ws) {
-            ws = new WebSocket(socketURL);
-
-            ws.onopen = () => {
-                console.log('Connected to WebSocket server in GameLobby');
-                if (ws && ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify({ type: 'hit' }));
-                    console.log('Hit message sent');
-                    navigate('/gameroom');
-                } else {
-                    console.log('WebSocket is not open');
-                    setload(true)
-                }
-            };
-
-            ws.onclose = () => {
-                console.log('WebSocket connection closed in GameLobby');
-            };
-
-            ws.onerror = (error) => {
-                console.error('WebSocket error in GameLobby:', error);
-            };
-        }
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(
+          JSON.stringify({
+            type: 'hit',
+          })
+        );
+      } else {
+        console.error('WebSocket is not open');
+      }
     };
-
+  
   return (
     <>
     <div className="flex justify-center items-center h-screen">
@@ -46,3 +41,5 @@ export default function Gamelobby():React.ReactNode {
     </>
   )
 }
+
+export default Gamelobby;
