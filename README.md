@@ -17,7 +17,7 @@ NumberRoulette is a web-based game built with VITE + REACT, TypeScript, Tailwind
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/numberroulette.git
+git clone https://github.com/ArunavaCoderEm/numberroulette.git
 cd numberroulette
 ```
 
