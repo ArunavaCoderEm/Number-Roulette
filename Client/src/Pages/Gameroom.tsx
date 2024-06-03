@@ -73,7 +73,7 @@ export default function Gameroom(): React.ReactNode {
         <div className='lg:border-r-2 h-screen flex flex-col items-center'>
           <h1 className='text-white text-center font-thin text-3xl'>{play?.toUpperCase()}</h1>
           <Wheel onResultChange={handleResultChange}/>
-          <h1 className='text-white text-center font-semibold text-xl'>My score - <span className='text-2xl dont-bold text-blue-400'>{scoreTwo}</span></h1>
+          <h1 className='text-white text-center font-semibold text-xl'>My score = <span className='text-2xl dont-bold text-blue-400'>{scoreTwo}</span></h1>
         </div>
         <div className='h-screen flex flex-col items-center'>
           <h1 className='text-white text-center font-thin text-3xl'>OPPONENT</h1>
