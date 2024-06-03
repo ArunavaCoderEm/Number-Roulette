@@ -1,30 +1,71 @@
-# React + TypeScript + Vite
+# NumberRoulette
+# Vite React + TypeScript + Tailwind + 💙
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NumberRoulette is a web-based game built with VITE + REACT, TypeScript, Tailwind CSS, and WebSockets. The game allows users to join a game room, enter an arena, and compete by spinning a lucky wheel to score points. The first player to reach 100 points wins the game.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Usage](#usage)
+- [Game Rules](#game-rules)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Contributor](#Contributor)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+git clone https://github.com/yourusername/numberroulette.git
+cd numberroulette
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install dependencies and navigate:
+```
+npm install
+cd client
+```
+
+3. Start the development server:
+
+```
+npm run dev
+```
+
+4. Open your browser and navigate to:
+```
+http://localhost:5173
+```
+
+5. Start Backend:
+```
+cd server
+npm run dev
+```
+
+## Usage
+
+Its a fun website for playing game and get entertained with friends or random players.
+
+## Game-rules
+
+- Both players spin the wheel.
+- The player with greater number gets increment in score.
+- If any player's score reaches 100 they win.
+
+## Features
+
+List of the key features of the project here.
+
+- Has a multiplayer playing option.
+- Will be having a fake money bidding system.
+- Will store those details in database.
+
+
+## Screenshots
+
+
+## Contributors
+
+- Arunava Dutta &nbsp;[(@ArunavaCoderEm)](https://github.com/ArunavaCoderEm)
