@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useWebSocket } from "../Websocket/WebSocketProvider"
 
 const NumberWheel: React.FC = () => {
   const [spinning, setSpinning] = useState(false);
   const [result, setResult] = useState<number | null>(0);
   const [score, setscore] = useState<number | null>(0);
+
+  const socket = useWebSocket();
+
+
+  useEffect(() => {
+    if (!socket) return;
+    socket.onmessage = (e: any) => {
+      const message = JSON.parse(e.data)
+      console.log(message)
+    }             
+  }, [socket]);
+
 
   const startSpinning = () => {
     setSpinning(true);
@@ -12,6 +25,16 @@ const NumberWheel: React.FC = () => {
       setSpinning(false);
       setResult(randomResult);
     }, 3000);
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          type: 'choose',
+          plnum: result
+        })
+      );
+    } else {
+      console.error('WebSocket is not open');
+    }
   };
 
   return (

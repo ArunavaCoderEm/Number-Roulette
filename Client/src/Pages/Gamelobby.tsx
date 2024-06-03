@@ -1,8 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from "../Websocket/WebSocketProvider"
 
 const Gamelobby: React.FC = () => {
+
+  const[msg, setMsg] = useState<String | null>(null)
+  const[Play, setPlay] = useState<String | null>(null)
 
     const navigate = useNavigate();
 
@@ -14,8 +17,13 @@ const Gamelobby: React.FC = () => {
       socket.onmessage = (e: any) => {
         const message = JSON.parse(e.data)
         console.log(message)
+        setMsg(message.type)
+        setPlay(message.role)
+      }             
+      if(msg){
+        navigate(`/gameroom?message=${Play}`);
       }
-    }, [socket]);
+    }, [socket,msg]);
   
     const handleHit = () => {
       if (socket && socket.readyState === WebSocket.OPEN) {
@@ -24,7 +32,6 @@ const Gamelobby: React.FC = () => {
             type: 'hit',
           })
         );
-        navigate('/gameroom')
       } else {
         console.error('WebSocket is not open');
       }
