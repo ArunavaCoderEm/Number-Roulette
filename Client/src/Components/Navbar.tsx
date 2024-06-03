@@ -46,9 +46,9 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                to="/about"
-                className={`block p-2 font-sm rounded-md hover:text-slate-500 transition-all duration-300 ${menu === 'about' ? 'bg-slate-500 text-black' : 'text-white'}`}
-                onClick={() => setMenu('about')}
+                to="/rules"
+                className={`block p-2 font-sm rounded-md hover:text-slate-500 transition-all duration-300 ${menu === 'rules' ? 'bg-slate-500 text-black' : 'text-white'}`}
+                onClick={() => setMenu('rules')}
               >
                 Rules
               </Link>
