@@ -25,9 +25,6 @@ const NumberWheel: React.FC<{ onResultChange: (
 
   const startSpinning = () => {
     setSpinning(true);
-    setTimeout(() => {
-      setSpinning(false);
-    }, 3000);
     const randomResult = Math.floor(Math.random() * (20 - 10 + 1)); 
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
@@ -36,7 +33,10 @@ const NumberWheel: React.FC<{ onResultChange: (
           plnum: randomResult 
         })
       );
-      setmynum(randomResult)
+      setTimeout(() => {
+        setSpinning(false);
+        setmynum(randomResult)
+      }, 3000);
     } else {
       console.error('WebSocket is not open');
     }
@@ -44,7 +44,7 @@ const NumberWheel: React.FC<{ onResultChange: (
 
   return (
     <div>
-      <h2 className='text-2xl text-center text-white mt-10 mb-5'>Number Wheel</h2>
+      <h2 className='text-2xl text-center text-white mt-10 mb-5'>Lucky Wheel</h2>
       <div className={`wheel ${spinning ? 'spin' : ''}`}>
         <div className='flex justify-center my-5 mx-auto'>
           <img src="./spin.png" className='img2' alt="Number Wheel" />
@@ -55,7 +55,7 @@ const NumberWheel: React.FC<{ onResultChange: (
         <button onClick={startSpinning} className="p-4 sha mt-5 mb-3 bg-gradient-to-b from-green-700 to-green-900 rounded-md font-semibold text-white hover:scale-110 transition-all duration-300 hover:text-slate-300">Spin Wheel</button>
         }
       </div>
-        <h1 className='text-white text-center font-semibold text-xl my-10'>My number - {mynum}</h1>
+        <h1 className='text-white text-center font-semibold text-xl my-10'>My number = <span className='text-2xl dont-bold text-blue-400'>{mynum}</span></h1>
     </div>
   );
 };
