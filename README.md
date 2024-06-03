@@ -72,6 +72,6 @@ List of the key features of the project here.
 ![three](https://github.com/ArunavaCoderEm/Number-Roulette/assets/121813676/28d715e9-e1d2-4d8b-aeb2-9c09bcb21fe4)
 
 
-## Contributors
+## Contributor
 
 - Arunava Dutta &nbsp;[(@ArunavaCoderEm)](https://github.com/ArunavaCoderEm)
