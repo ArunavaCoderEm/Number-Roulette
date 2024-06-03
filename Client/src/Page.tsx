@@ -3,7 +3,7 @@ import Gamelobby from "./Pages/Gamelobby";
 import Gameroom from "./Pages/Gameroom";
 import Home from "./Pages/Home";
 import { Routes, Route } from "react-router-dom";
-import { WebSocketProvider } from '../WebSocketProvider';
+import { WebSocketProvider } from './Websocket/WebSocketProvider';
 
 export default function Page():React.ReactNode {
 

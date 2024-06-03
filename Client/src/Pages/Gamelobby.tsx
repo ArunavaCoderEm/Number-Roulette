@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
-import { useWebSocket } from "../../WebSocketProvider"
+import { useWebSocket } from "../Websocket/WebSocketProvider"
 
 const Gamelobby: React.FC = () => {
 
