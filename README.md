@@ -65,6 +65,12 @@ List of the key features of the project here.
 
 ## Screenshots
 
+![one](https://github.com/ArunavaCoderEm/Number-Roulette/assets/121813676/5f60edd1-95c4-432d-8fbe-85be058c1281)
+
+![two](https://github.com/ArunavaCoderEm/Number-Roulette/assets/121813676/471b99d7-7230-47a4-a013-9a39f6f28b57)
+
+![three](https://github.com/ArunavaCoderEm/Number-Roulette/assets/121813676/28d715e9-e1d2-4d8b-aeb2-9c09bcb21fe4)
+
 
 ## Contributors
 
