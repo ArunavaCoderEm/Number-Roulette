@@ -5,6 +5,7 @@ NumberRoulette is a web-based game built with VITE + REACT, TypeScript, Tailwind
 
 ## Table of Contents
 
+- [Planning](#planning)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Game Rules](#game-rules)
@@ -14,7 +15,7 @@ NumberRoulette is a web-based game built with VITE + REACT, TypeScript, Tailwind
 
 ## Planning
 
-https://excalidraw.com/#json=5ODWxfJxt9w6T2ziCfGnu,8uh3SWORGd2lz3fURDD2rA
+![Untitled-2024-05-15-0043](https://github.com/ArunavaCoderEm/Number-Roulette/assets/121813676/0ad3ff75-9669-4c49-b68e-e671f48ef76c)
 
 ## Installation
 
