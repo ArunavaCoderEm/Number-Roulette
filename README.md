@@ -12,6 +12,10 @@ NumberRoulette is a web-based game built with VITE + REACT, TypeScript, Tailwind
 - [Screenshots](#screenshots)
 - [Contributor](#Contributor)
 
+## Planning
+
+https://excalidraw.com/#json=5ODWxfJxt9w6T2ziCfGnu,8uh3SWORGd2lz3fURDD2rA
+
 ## Installation
 
 1. Clone the repository:
